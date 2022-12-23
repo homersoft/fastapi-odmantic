@@ -1,0 +1,98 @@
+[project]
+name = "fastapi-odmantic"
+description = "FastAPI middleware wrapping AIOMotorEngine with context manager API"
+keywords = ["mongodb", "asyncio", "types", "pydantic", "motor", "fastapi", "starlette"]
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Internet",
+    "Topic :: Database",
+    "Topic :: Database :: Front-Ends",
+    "Topic :: Software Development :: Object Brokering",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+    "Development Status :: 3 - Alpha",
+    "Framework :: AsyncIO",
+    "Environment :: Web Environment",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python",
+]
+requires-python = ">=3.10"
+dynamic = ["version"]
+dependencies = [
+  "fastapi",
+  "odmantic",
+]
+
+[project.optional-dependencies]
+develop = [
+  "black",
+  "isort",
+  "flake8",
+  "flake8-pyproject",
+]
+tests = [
+  "pytest",
+]
+
+[[project.authors]]
+name = "Lambada"
+email = "lambada@silvair.com"
+
+[tool.setuptools]
+packages = ["fastapi_odmantic"]
+
+[tool.setuptools_scm]
+write_to = "version.txt"
+
+[tool.setuptools.dynamic]
+version = {file = "version.txt"}
+
+[build-system]
+requires = ["setuptools==65.6.3", "setuptools_scm[toml]==7.1.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.isort]
+line_length = 110
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+skip_glob = [".local/*", ".venv/*"]
+known_first_party=["fastapi_odmantic", "tests"]
+default_section="THIRDPARTY"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore:\"@coroutine\" decorator is deprecated.*:DeprecationWarning:motor.*",
+    "ignore:the AIOEngineDependency object is deprecated.*:DeprecationWarning:odmantic.*",
+]
+junit_family = "legacy"
+
+[tool.black]
+line-length = 110
+target-version = ['py310']
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.mypy_cache
+    | _build
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 110
+exclude = ['**/conftest.py']
