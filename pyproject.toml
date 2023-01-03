@@ -26,7 +26,8 @@ requires-python = ">=3.10"
 dynamic = ["version"]
 dependencies = [
   "fastapi",
-  "odmantic",
+  "odmantic~=0.5.0",
+  "yarl",
 ]
 
 [project.optional-dependencies]
@@ -38,6 +39,7 @@ develop = [
 ]
 tests = [
   "pytest",
+  "pytest-asyncio",
 ]
 
 [[project.authors]]
