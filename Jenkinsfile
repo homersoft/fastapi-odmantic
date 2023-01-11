@@ -13,4 +13,5 @@ pipelinePythonSCA(
     runUnitTests: true,
     unitTestRunner: 'py.test',
     packages: [".[tests]"],
+    baseBranch: "development",
 )
